@@ -23,11 +23,24 @@
 body {
   font-size: 14px;
   background-color: var(--very-dark-blue);
+  /* background-image: url(images/bg-desktop.png); */
+  /* background-repeat: no-repeat; */
+  /* background-size: 2000px; */
+  /* background-position: bottom left; */
+  min-height: 100vb;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  width: 100%;
+  height: 50%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
   background-image: url(images/bg-desktop.png);
   background-repeat: no-repeat;
-  background-size: 2000px;
-  background-position: bottom left;
-  height: 100vb;
+  background-size: cover;
 }
 
 .container {
@@ -166,6 +179,41 @@ body {
   margin-right: auto;
 }
 
+/* Phone Screens */
+@media (max-width: 767px) {
+  body {
+    height: 600px;
+  }
+
+  body::before {
+    background-image: url(images/bg-mobile.png);
+    height: 100%;
+  }
+
+  .container {
+    flex-direction: column;
+    width: 90%;
+    align-items: stretch;
+    gap: 20px;
+
+    .storage-box {
+      padding-bottom: 60px;
+
+      .progress-bar {
+        .bar {
+          .left {
+            bottom: -125px;
+            right: 50%;
+            transform: translateX(50%);
+          }
+          .left::before {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
 /* Small Screens */
 @media (min-width: 768px) {
   .container {
@@ -189,6 +237,7 @@ body {
 .attribution {
   font-size: 11px;
   text-align: center;
+  display: none;
 }
 .attribution a {
   color: hsl(228, 45%, 44%);
